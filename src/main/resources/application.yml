@@ -1,0 +1,73 @@
+management:
+  endpoints:
+    web:
+      base-path: /management
+  health:
+    mail:
+      enabled: false
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+        step: 60
+    enable:
+      http: true
+      jvm: true
+      process: true
+      system: true
+    distribution:
+      percentiles-histogram:
+        all: true
+      percentiles:
+        all: 0, 0.5, 0.75, 0.95, 0.99, 1.0
+    tags:
+      application: ${spring.application.name}
+
+spring:
+  application:
+    name: test_project
+  profiles:
+  jmx:
+    enabled: false
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: deferred
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:file:~/test
+    username: root
+    password:
+  h2:
+    console:
+      enabled: false
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate.jdbc.time_zone: UTC
+    hibernate:
+      ddl-auto: update
+  messages:
+    basename: i18n/messages
+  main:
+    allow-bean-definition-overriding: true
+  task:
+    execution:
+      thread-name-prefix: system-task-
+      pool:
+        core-size: 2
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: system-scheduling-
+      pool:
+        size: 2
+
+logging:
+  level:
+    ROOT: info
+    com.example.test_project: info
+
+server:
+  port: 9000
