@@ -1,5 +1,6 @@
 package com.bespalov.project.resource;
 
+import com.bespalov.project.annotation.JsonSerialize;
 import com.bespalov.project.dto.ProfileDTO;
 import com.bespalov.project.service.ProfileService;
 import org.slf4j.Logger;
